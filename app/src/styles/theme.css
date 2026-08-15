@@ -1,0 +1,105 @@
+/* Theme — the palette retune applied on top of the Organic design system.
+   The accent ramp is a warm brown and the second voice is a river blue, so the
+   nav rail, live screen and chart panels read blue while brown is reserved for
+   primary actions and highlights. Values are the design's token overrides;
+   organic.css stays the untouched design-system source of truth. */
+:root {
+  --color-accent: #8c5a33;
+  --color-accent-100: #f7ede4;
+  --color-accent-200: #ecdac9;
+  --color-accent-300: #d9bb9d;
+  --color-accent-400: #c2966d;
+  --color-accent-500: #a2703f;
+  --color-accent-600: #7a4d2a;
+  --color-accent-700: #5f3b20;
+  --color-accent-800: #452a17;
+  --color-accent-900: #2c1a0e;
+
+  --color-accent-2: #44708a;
+  --color-accent-2-100: #e9f2f7;
+  --color-accent-2-200: #d3e4ee;
+  --color-accent-2-300: #b0cddf;
+  --color-accent-2-400: #85adc6;
+  --color-accent-2-500: #5d8caa;
+  --color-accent-2-600: #446f8c;
+  --color-accent-2-700: #33566c;
+  --color-accent-2-800: #233c4c;
+  --color-accent-2-900: #16252f;
+
+  --color-surface: #e9dcc8;
+
+  /* Light-on-dark ink, used for text and washes over the blue panels. */
+  --color-ink-light: #f5ead8;
+
+  /* Panels sit on the river-valley backdrop, so every surface card carries a
+     light shadow to lift it clear of the scene. */
+  --panel-shadow: 0 2px 10px rgba(35, 60, 76, 0.09);
+
+  /* Uniform scale factor for the 1280x800 design, set from JS on resize. */
+  --app-scale: 1;
+  --app-w: 1280px;
+  --app-h: 800px;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--color-accent-700);
+}
+a:hover {
+  color: var(--color-accent-800);
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes ringOut {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
