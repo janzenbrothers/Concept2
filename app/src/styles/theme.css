@@ -31,6 +31,16 @@
   /* Light-on-dark ink, used for text and washes over the blue panels. */
   --color-ink-light: #f5ead8;
 
+  /* Secondary text is set with opacity throughout. These are the floors that
+     keep it above 4.5:1 on the surfaces it actually lands on — the app is read
+     at arm's length, mounted on an erg, by someone out of breath. */
+  --muted: 0.66;
+  --muted-strong: 0.78;
+
+  /* Headings and branding are Caprasimo; readouts are not. A display face is
+     the wrong tool for a number you have to parse mid-stroke. */
+  --font-numeric: var(--font-body);
+
   /* Panels sit on the river-valley backdrop, so every surface card carries a
      light shadow to lift it clear of the scene. */
   --panel-shadow: 0 2px 10px rgba(35, 60, 76, 0.09);

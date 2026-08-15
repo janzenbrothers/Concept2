@@ -2,18 +2,20 @@
  *  drawn against — swap it for the real training history when the log lands. */
 
 export interface RecentPiece {
-  day: string
+  /** Days back from today, so the log reads correctly whenever it is opened. */
+  daysAgo: number
   name: string
-  distance: string
+  /** Metres, formatted at render time in the reader's units. */
+  metres: number
   time: string
   split: string
 }
 
 export const recentPieces: RecentPiece[] = [
-  { day: 'Tue', name: '5,000 m steady', distance: '5,000 m', time: '20:31', split: '2:03.1' },
-  { day: 'Mon', name: '8 × 250 sprints', distance: '2,000 m', time: '7:48', split: '1:57.0' },
-  { day: 'Sun', name: 'Long paddle', distance: '10,021 m', time: '44:02', split: '2:11.8' },
-  { day: 'Fri', name: '2,000 m test', distance: '2,000 m', time: '7:04.2', split: '1:46.0' },
+  { daysAgo: 3, name: '5,000 m steady', metres: 5000, time: '20:31', split: '2:03.1' },
+  { daysAgo: 4, name: '8 × 250 sprints', metres: 2000, time: '7:48', split: '1:57.0' },
+  { daysAgo: 5, name: 'Long paddle', metres: 10021, time: '44:02', split: '2:11.8' },
+  { daysAgo: 7, name: '2,000 m test', metres: 2000, time: '7:04.2', split: '1:46.0' },
 ]
 
 /** Bar heights in design px, oldest first, alongside the weekday initial. */
@@ -27,18 +29,18 @@ export const weekBars = [
   { height: 30, label: 'T' },
 ]
 
-export const weekTotals = { distance: '24.6 km', sessions: '5 sessions' }
+export const weekTotals = { metres: 24600, sessions: '5 sessions' }
 
 export const seasonGoal = {
-  done: 412,
-  target: 1000,
+  doneMetres: 412000,
+  targetMetres: 1000000,
   copy: 'On pace for late October. Four sessions a week keeps you ahead of the water.',
 }
 
-/** Kilometres per week for the trend panel; the last entry is the week in progress. */
-export const weeklyDistance = [18, 34, 26, 41, 12, 38, 46, 31, 22, 44, 36, 24.6]
-export const weeklyDistanceMax = 50
-export const rangeTotal = '382 km'
+/** Metres per week for the trend panel; the last entry is the week in progress. */
+export const weeklyDistance = [18, 34, 26, 41, 12, 38, 46, 31, 22, 44, 36, 24.6].map((km) => km * 1000)
+export const weeklyDistanceMax = 50000
+export const rangeTotalMetres = 382000
 
 /** Average split, in seconds per 500 m, for each 500 m of the last piece. */
 export const splitByFiveHundred = [124, 122.5, 123.4, 125.1, 126.8, 127.2, 126.4, 125, 123.2, 121.6]
@@ -110,7 +112,5 @@ export const profile = {
 }
 
 export const greeting = {
-  conditions: 'Friday 14 August · 06:12 · 14°C, still water',
-  hello: 'Morning, Dana',
   streak: '11 days',
 }

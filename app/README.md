@@ -31,6 +31,11 @@ two seconds under target split, with a long swell across the piece and a short
 one across each stroke cycle. Distance accumulates from the pace actually held,
 so the pace-boat gap behaves the way it would on the water.
 
+It also does the work a monitor does rather than a screen — counting strokes and
+shaping a force curve for each one, closing off splits every 500 m or at each
+interval boundary, running the rest between intervals, and ending the piece
+itself when the target is reached. Screens read that; they never compute it.
+
 It sits behind the `ErgSource` interface in `src/erg/types.ts`:
 
 ```ts
@@ -50,6 +55,24 @@ Eight, reached from the left rail (`home`, `setup`, `progress`, `plan`,
 `summary`, and the erg-status button at the foot of the rail opens `pair`.
 Each is a component in `src/screens/`; `src/state/` holds the piece
 configuration, the settings toggles and the session lifecycle.
+
+The live screen has four display modes — Numbers, Pace, Splits, Force — changed
+by the tab strip, a horizontal swipe, or the arrow keys, following the way the
+monitor's own app lets you swipe between screens mid-piece. Split and distance
+are the heroes; time, rate and the pace-boat gap sit under them at 62 px, and
+the rate card outlines itself when you drift more than two strokes off target.
+
+## Two rules the styling follows
+
+**Nothing muted falls below 4.5:1.** Secondary text is dimmed with `--muted`,
+set per surface in `theme.css` and `app.css` rather than picked per element —
+0.66 on light surfaces, 0.72–0.74 on dark ones, and 1 on the brown accent,
+which cannot reach AA against cream at any dimming. A tablet on an erg is read
+at arm's length by someone out of breath.
+
+**Caprasimo is the voice, not the instrument.** Headings, buttons and branding
+are Caprasimo. Every readout carries `.num` instead: Figtree with tabular
+figures, so a number does not shift width as it ticks.
 
 ## Content
 

@@ -1,10 +1,11 @@
 import { Pill } from '../components/controls'
 import {
   personalRecords,
-  rangeTotal,
+  rangeTotalMetres,
   weeklyDistance,
   weeklyDistanceMax,
 } from '../data/fixtures'
+import { fmtLongDistanceWhole } from '../lib/format'
 import { useApp } from '../state/context'
 import type { RangeId } from '../state/context'
 
@@ -12,7 +13,7 @@ const RANGES: RangeId[] = ['4 weeks', '12 weeks', 'Season']
 const MONTHS = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug']
 
 export function ProgressScreen() {
-  const { range, setRange } = useApp()
+  const { range, setRange, units } = useApp()
 
   return (
     <div className="screen screen--pad">
@@ -28,7 +29,7 @@ export function ProgressScreen() {
       <section className="panel-deep panel--r16 progress__volume">
         <div className="row-between row-between--baseline">
           <div className="kicker kicker--on-deep">Weekly distance</div>
-          <div className="progress__total">{rangeTotal}</div>
+          <div className="progress__total num">{fmtLongDistanceWhole(rangeTotalMetres, units)}</div>
         </div>
         <div className="progress__bars">
           {weeklyDistance.map((value, i) => (
@@ -87,7 +88,7 @@ export function ProgressScreen() {
                 <div className="progress__pr-name">{record.name}</div>
                 <div className="progress__pr-when">{record.when}</div>
               </div>
-              <div className="progress__pr-value">{record.value}</div>
+              <div className="progress__pr-value num">{record.value}</div>
             </div>
           ))}
         </section>

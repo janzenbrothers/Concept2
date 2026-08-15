@@ -1,7 +1,7 @@
 import { Pill, SettingRow } from '../components/controls'
 import { profile } from '../data/fixtures'
 import { useApp } from '../state/context'
-import type { UnitId } from '../state/context'
+import type { UnitId } from '../lib/format'
 
 const UNITS: UnitId[] = ['Metres', 'Miles']
 
@@ -39,19 +39,19 @@ export function SettingsScreen() {
         <div className="settings__list">
           <SettingRow
             name="Auto pause"
-            sub="Stop the clock when the handle rests"
+            sub="Stop the clock after four seconds at rest"
             on={autoPause}
             onToggle={() => toggleSetting('autoPause')}
           />
           <SettingRow
             name="Voice calls"
-            sub="Split and distance read out every 500 m"
+            sub="Split and distance spoken at every 500 m"
             on={voice}
             onToggle={() => toggleSetting('voice')}
           />
           <SettingRow
             name="Heart rate alerts"
-            sub="Warn above 172 bpm"
+            sub="Warn on the live screen above 172 bpm"
             on={strapAlert}
             onToggle={() => toggleSetting('strapAlert')}
           />
@@ -65,7 +65,7 @@ export function SettingsScreen() {
           <div className="panel panel--r12 setting">
             <div>
               <div className="setting__name">Units</div>
-              <div className="setting__sub">Distance and pace display</div>
+              <div className="setting__sub">Distance readouts; pace stays per 500 m</div>
             </div>
             <div className="settings__units">
               {UNITS.map((unit) => (
